@@ -22,6 +22,7 @@ const inputVariants = cva(
       },
       disabled: {
         true: "bg-gray-100 text-gray-400 cursor-not-allowed opacity-80",
+        false: "",
       },
     },
     defaultVariants: {
@@ -33,13 +34,14 @@ const inputVariants = cva(
 );
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "disabled">,
     VariantProps<typeof inputVariants> {
   label?: string;
   hint?: string;
   error?: string;
   id?: string;
   size?: "sm" | "md" | "lg";
+  disabled?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(

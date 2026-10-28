@@ -453,16 +453,18 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       [ref]
     );
 
+    const Comp = asChild ? Slot : "div";
+
     if (isCompound) {
       return (
         <TooltipContext.Provider value={contextValue}>
-          <div
+          <Comp
             ref={mergedWrapperRef}
             className={cn("relative inline-flex items-center justify-center", wrapperClassName)}
             {...props}
           >
             {children}
-          </div>
+          </Comp>
         </TooltipContext.Provider>
       );
     }
